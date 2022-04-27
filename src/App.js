@@ -76,7 +76,7 @@ function App() {
                     <BarChart width={500} height={300} data={info}>
                         <CartesianGrid strokeDasharray="6 3" />
                         <XAxis dataKey="date" />
-                        <YAxis type="number" domain={[0, "auto"]} />
+                        <YAxis type="number" domain={[0, 12000]} />
                         <Tooltip />
                         <Legend />
                         <Bar dataKey="price" fill="teal" />
