@@ -1,4 +1,13 @@
 import { useEffect, useState } from "react";
+import {
+    Bar,
+    BarChart,
+    CartesianGrid,
+    Legend,
+    Tooltip,
+    XAxis,
+    YAxis,
+} from "recharts";
 import "./App.css";
 import { AddForm } from "./components/AddForm/AddForm";
 import { DataListItem } from "./components/DataListItem/DataListItem";
@@ -37,30 +46,42 @@ function App() {
     return (
         <div className="App">
             <div className="container">
-                <h1>Таблица</h1>
-                <table border="1" cellSpacing="0">
-                    <thead>
-                        <tr>
-                            <th>ДАТА</th>
-                            <th>ИНСТРУМЕНТ</th>
-                            <th>СТОИМОСТЬ</th>
-                        </tr>
-                    </thead>
-                    <tbody>{dataList}</tbody>
-                </table>
-                <button
-                    onClick={() => setShowAddForm(true)}
-                    className="app__button"
-                >
-                    Добавить
-                </button>
-                {showAddForm && (
-                    <AddForm
-                        info={info}
-                        setInfo={setInfo}
-                        setShowAddForm={setShowAddForm}
-                    />
-                )}
+                <div className="task">
+                    <h1>Таблица</h1>
+                    <table border="1" cellSpacing="0">
+                        <thead>
+                            <tr>
+                                <th>ДАТА</th>
+                                <th>ИНСТРУМЕНТ</th>
+                                <th>СТОИМОСТЬ</th>
+                            </tr>
+                        </thead>
+                        <tbody>{dataList}</tbody>
+                    </table>
+                    <button
+                        onClick={() => setShowAddForm(true)}
+                        className="app__button"
+                    >
+                        Добавить
+                    </button>
+                    {showAddForm && (
+                        <AddForm
+                            info={info}
+                            setInfo={setInfo}
+                            setShowAddForm={setShowAddForm}
+                        />
+                    )}
+                </div>
+                <div className="schedule">
+                    <BarChart width={500} height={300} data={info}>
+                        <CartesianGrid strokeDasharray="6 3" />
+                        <XAxis dataKey="date" />
+                        <YAxis type="number" domain={[0, "auto"]} />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="price" fill="teal" />
+                    </BarChart>
+                </div>
             </div>
         </div>
     );
